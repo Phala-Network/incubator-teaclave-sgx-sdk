@@ -27,7 +27,9 @@
 
 #![allow(missing_docs)]
 
+#[cfg(feature = "lang_item")]
 use core::intrinsics;
+#[cfg(feature = "lang_item")]
 use crate::sys::cmath;
 
 pub use core::f32::consts;
@@ -36,6 +38,7 @@ pub use core::f32::{INFINITY, MAX_10_EXP, NAN, NEG_INFINITY};
 pub use core::f32::{MAX, MIN, MIN_POSITIVE};
 pub use core::f32::{MAX_EXP, MIN_10_EXP, MIN_EXP};
 
+#[cfg(feature = "lang_item")]
 #[lang = "f32_runtime"]
 impl f32 {
     /// Returns the largest integer less than or equal to a number.

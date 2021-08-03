@@ -196,7 +196,7 @@ use crate::sys;
 /// ```
 
 #[derive(Clone)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "hashmap_type")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "hashmap_type")]
 //#[stable(feature = "rust1", since = "1.0.0")]
 pub struct HashMap<K, V, S = RandomState> {
     base: base::HashMap<K, V, S>,

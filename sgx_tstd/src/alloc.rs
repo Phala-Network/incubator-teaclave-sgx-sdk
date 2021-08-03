@@ -62,6 +62,7 @@ fn default_alloc_error_hook(layout: Layout) {
 }
 
 #[doc(hidden)]
+#[cfg(feature = "lang_item")]
 #[alloc_error_handler]
 pub fn rust_oom(layout: Layout) -> ! {
     let hook = HOOK.load(Ordering::SeqCst);
@@ -73,6 +74,7 @@ pub fn rust_oom(layout: Layout) -> ! {
 
 #[doc(hidden)]
 #[allow(unused_attributes)]
+#[cfg(feature = "lang_item")]
 pub mod __default_lib_allocator {
     use super::{GlobalAlloc, Layout, System};
     // These magic symbol names are used as a fallback for implementing the
