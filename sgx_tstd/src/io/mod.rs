@@ -544,7 +544,7 @@ pub(crate) fn default_read_exact<R: Read + ?Sized>(this: &mut R, mut buf: &mut [
 /// [`&str`]: prim@str
 /// [`std::io`]: self
 /// [`File`]: crate::fs::File
-#[cfg_attr(not(test), rustc_diagnostic_item = "IoRead")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "IoRead")]
 pub trait Read {
     /// Pull some bytes from this source into the specified buffer, returning
     /// how many bytes were read.
@@ -1357,7 +1357,7 @@ impl Initializer {
 /// `write` in a loop until its entire input has been written.
 ///
 /// [`write_all`]: Write::write_all
-#[cfg_attr(not(test), rustc_diagnostic_item = "IoWrite")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "IoWrite")]
 pub trait Write {
     /// Write a buffer into this writer, returning how many bytes were written.
     ///
