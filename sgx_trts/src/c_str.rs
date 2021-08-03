@@ -121,7 +121,7 @@ use sgx_types::c_char;
 /// of `CString` instances can lead to invalid memory accesses, memory leaks,
 /// and other memory errors.
 #[derive(PartialEq, PartialOrd, Eq, Ord, Hash, Clone)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "cstring_type")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "cstring_type")]
 pub struct CString {
     // Invariant 1: the slice ends with a zero byte and has a length of at least one.
     // Invariant 2: the slice contains only one zero byte.
@@ -197,7 +197,7 @@ pub struct CString {
 ///
 /// [`&str`]: prim@str
 #[derive(Hash)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "CStr")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "CStr")]
 // FIXME:
 // `fn from` in `impl From<&CStr> for Box<CStr>` current implementation relies
 // on `CStr` being layout-compatible with `[u8]`.

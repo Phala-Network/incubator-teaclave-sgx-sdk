@@ -25,7 +25,7 @@ use crate::thread::Result;
 
 #[doc(hidden)]
 #[allow_internal_unstable(libstd_sys_internals, const_format_args)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "std_panic_2015_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "std_panic_2015_macro")]
 #[rustc_macro_transparency = "semitransparent"]
 pub macro panic_2015 {
     () => ({
