@@ -111,6 +111,7 @@ unsafe extern "C" fn rust_eh_personality_impl(
     }
 }
 
+#[cfg(feature = "lang_item")]
 #[lang = "eh_personality"]
 unsafe extern "C" fn rust_eh_personality(
     version: c_int,

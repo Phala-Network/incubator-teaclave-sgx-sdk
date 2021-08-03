@@ -102,7 +102,7 @@ use crate::untrusted::path::PathEx;
 ///
 /// [`BufReader<R>`]: io::BufReader
 /// [`sync_all`]: File::sync_all
-#[cfg_attr(not(test), rustc_diagnostic_item = "File")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "File")]
 pub struct File {
     inner: fs_imp::File,
 }
@@ -206,13 +206,13 @@ pub struct Permissions(fs_imp::FilePermissions);
 /// A structure representing a type of file with accessors for each file type.
 /// It is returned by [`Metadata::file_type`] method.
 #[derive(Copy, Clone, PartialEq, Eq, Hash, Debug)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "FileType")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "FileType")]
 pub struct FileType(fs_imp::FileType);
 
 /// A builder used to create directories in various manners.
 ///
 /// This builder also supports platform-specific options.
-#[cfg_attr(not(test), rustc_diagnostic_item = "DirBuilder")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "DirBuilder")]
 #[derive(Debug)]
 pub struct DirBuilder {
     inner: fs_imp::DirBuilder,

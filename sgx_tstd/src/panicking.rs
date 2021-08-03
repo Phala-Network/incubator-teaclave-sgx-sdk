@@ -73,6 +73,7 @@ extern "Rust" {
 /// This function is called by the panic runtime if FFI code catches a Rust
 /// panic but doesn't rethrow it. We don't support this case since it messes
 /// with our panic count.
+#[cfg(feature = "lang_item")]
 #[rustc_std_internal_symbol]
 extern "C" fn __rust_drop_panic() -> ! {
     rtabort!("Rust panics must be rethrown");
@@ -80,6 +81,7 @@ extern "C" fn __rust_drop_panic() -> ! {
 
 /// This function is called by the panic runtime if it catches an exception
 /// object which does not correspond to a Rust panic.
+#[cfg(feature = "lang_item")]
 #[rustc_std_internal_symbol]
 extern "C" fn __rust_foreign_exception() -> ! {
     rtabort!("Rust cannot catch foreign exceptions");
@@ -532,7 +534,7 @@ pub fn panicking() -> bool {
 }
 
 /// Entry point of panics from the libcore crate (`panic_impl` lang item).
-#[panic_handler]
+#[cfg_attr(feature = "lang_item", panic_handler)]
 pub fn begin_panic_handler(info: &PanicInfo<'_>) -> ! {
     struct PanicPayload<'a> {
         inner: &'a fmt::Arguments<'a>,
@@ -619,7 +621,7 @@ pub fn begin_panic_handler(info: &PanicInfo<'_>) -> ! {
 /// This is the entry point of panicking for the non-format-string variants of
 /// panic!() and assert!(). In particular, this is the only entry point that supports
 /// arbitrary payloads, not just format strings.
-#[lang = "begin_panic"]
+#[cfg_attr(feature = "lang_item", lang = "begin_panic")]
 // lang item for CTFE panic support
 // never inline unless panic_immediate_abort to avoid code
 // bloat at the call sites as much as possible
@@ -760,7 +762,7 @@ pub fn rust_panic_without_hook(payload: Box<dyn Any + Send>) -> ! {
 /// An unmangled function (through `rustc_std_internal_symbol`) on which to slap
 /// yer breakpoints.
 #[inline(never)]
-#[cfg_attr(not(test), rustc_std_internal_symbol)]
+#[cfg_attr(all(feature = "lang_item", not(test)), rustc_std_internal_symbol)]
 fn rust_panic(mut msg: &mut dyn BoxMeUp) -> ! {
     let code = unsafe {
         let obj = &mut msg as *mut &mut dyn BoxMeUp;

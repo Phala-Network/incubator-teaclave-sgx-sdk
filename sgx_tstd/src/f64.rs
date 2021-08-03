@@ -26,8 +26,8 @@
 //! new code should instead use the associated constants
 //! defined directly on the `f64` type.
 
+#![cfg(feature = "lang_item")]
 #![allow(missing_docs)]
-
 
 use crate::intrinsics;
 use crate::sys::cmath;

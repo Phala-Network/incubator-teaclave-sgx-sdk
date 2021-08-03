@@ -104,7 +104,7 @@ use crate::fmt;
 /// [loader lock]: https://docs.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-best-practices
 /// [`JoinHandle::join`]: crate::thread::JoinHandle::join
 /// [`with`]: LocalKey::with
-#[cfg_attr(not(test), rustc_diagnostic_item = "LocalKey")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "LocalKey")]
 pub struct LocalKey<T: 'static> {
     // This outer `LocalKey<T>` type is what's going to be stored in statics,
     // but actual data inside will sometimes be tagged with #[thread_local].
@@ -152,7 +152,7 @@ impl<T: 'static> fmt::Debug for LocalKey<T> {
 ///
 /// [`std::thread::LocalKey`]: crate::thread::LocalKey
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "thread_local_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "thread_local_macro")]
 #[allow_internal_unstable(thread_local_internals)]
 macro_rules! thread_local {
     // empty (base case for the recursion)

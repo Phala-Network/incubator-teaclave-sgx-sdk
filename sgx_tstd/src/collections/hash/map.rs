@@ -222,7 +222,7 @@ use crate::sys;
 /// }
 /// ```
 
-#[cfg_attr(not(test), rustc_diagnostic_item = "HashMap")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "HashMap")]
 #[rustc_insignificant_dtor]
 pub struct HashMap<K, V, S = RandomState> {
     base: base::HashMap<K, V, S>,
@@ -1992,7 +1992,7 @@ impl<K, V, S> Debug for RawEntryBuilder<'_, K, V, S> {
 /// This `enum` is constructed from the [`entry`] method on [`HashMap`].
 ///
 /// [`entry`]: HashMap::entry
-#[cfg_attr(not(test), rustc_diagnostic_item = "HashMapEntry")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "HashMapEntry")]
 pub enum Entry<'a, K: 'a, V: 'a> {
     /// An occupied entry.
     Occupied(OccupiedEntry<'a, K, V>),

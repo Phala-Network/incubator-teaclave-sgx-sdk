@@ -24,7 +24,7 @@
 #[macro_export]
 #[rustc_builtin_macro(std_panic)]
 #[allow_internal_unstable(edition_panic)]
-#[cfg_attr(not(test), rustc_diagnostic_item = "std_panic_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "std_panic_macro")]
 macro_rules! panic {
     // Expands to either `$crate::panic::panic_2015` or `$crate::panic::panic_2021`
     // depending on the edition of the caller.
@@ -88,7 +88,7 @@ macro_rules! panic {
 /// ```
 #[cfg(feature = "stdio")]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "print_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "print_macro")]
 #[allow_internal_unstable(print_internals)]
 macro_rules! print {
     ($($arg:tt)*) => {{
@@ -141,7 +141,7 @@ macro_rules! print {
 /// ```
 #[cfg(feature = "stdio")]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "println_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "println_macro")]
 #[allow_internal_unstable(print_internals, format_args_nl)]
 macro_rules! println {
     () => {
@@ -154,12 +154,12 @@ macro_rules! println {
 
 #[cfg(not(feature = "stdio"))]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "print_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "print_macro")]
 macro_rules! print { ($($arg:tt)*) => ({}) }
 
 #[cfg(not(feature = "stdio"))]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "println_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "println_macro")]
 macro_rules! println { ($($arg:tt)*) => ({}) }
 
 /// Prints to the standard error.
@@ -188,7 +188,7 @@ macro_rules! println { ($($arg:tt)*) => ({}) }
 /// ```
 #[cfg(feature = "stdio")]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "eprint_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "eprint_macro")]
 #[allow_internal_unstable(print_internals)]
 macro_rules! eprint {
     ($($arg:tt)*) => {{
@@ -223,7 +223,7 @@ macro_rules! eprint {
 /// ```
 #[cfg(feature = "stdio")]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "eprintln_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "eprintln_macro")]
 #[allow_internal_unstable(print_internals, format_args_nl)]
 macro_rules! eprintln {
     () => {
@@ -236,12 +236,12 @@ macro_rules! eprintln {
 
 #[cfg(not(feature = "stdio"))]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "eprint_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "eprint_macro")]
 macro_rules! eprint { ($($arg:tt)*) => ({}) }
 
 #[cfg(not(feature = "stdio"))]
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "eprintln_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "eprintln_macro")]
 macro_rules! eprintln { ($($arg:tt)*) => ({}) }
 
 /// Prints and returns the value of a given expression for quick and dirty
@@ -369,7 +369,7 @@ macro_rules! eprintln { ($($arg:tt)*) => ({}) }
 /// [`debug!`]: https://docs.rs/log/*/log/macro.debug.html
 /// [`log`]: https://crates.io/crates/log
 #[macro_export]
-#[cfg_attr(not(test), rustc_diagnostic_item = "dbg_macro")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "dbg_macro")]
 macro_rules! dbg {
     // NOTE: We cannot use `concat!` to make a static string as a format argument
     // of `eprintln!` because `file!` could contain a `{` or

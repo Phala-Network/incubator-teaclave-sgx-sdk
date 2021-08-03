@@ -186,7 +186,7 @@ use crate::sys_common::mutex as sys;
 ///
 /// assert_eq!(*res_mutex.lock().unwrap(), 800);
 /// ```
-#[cfg_attr(not(test), rustc_diagnostic_item = "Mutex")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "Mutex")]
 pub struct SgxMutex<T: ?Sized> {
     inner: sys::MovableMutex,
     poison: poison::Flag,
