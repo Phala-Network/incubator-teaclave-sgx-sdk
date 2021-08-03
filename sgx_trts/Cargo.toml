@@ -13,6 +13,7 @@ name = "sgx_trts"
 
 [features]
 default = []
+lang_item = []
 
 [target.'cfg(not(target_env = "sgx"))'.dependencies]
 sgx_types = { path = "../sgx_types" }

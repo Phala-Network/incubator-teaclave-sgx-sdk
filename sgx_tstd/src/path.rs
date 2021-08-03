@@ -1113,7 +1113,7 @@ impl FusedIterator for Ancestors<'_> {}
 /// ```
 ///
 /// Which method works best depends on what kind of situation you're in.
-#[cfg_attr(not(test), rustc_diagnostic_item = "PathBuf")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "PathBuf")]
 // FIXME:
 // `PathBuf::as_mut_vec` current implementation relies
 // on `PathBuf` being layout-compatible with `Vec<u8>`.
@@ -1824,7 +1824,7 @@ impl AsRef<OsStr> for PathBuf {
 /// let extension = path.extension();
 /// assert_eq!(extension, Some(OsStr::new("txt")));
 /// ```
-#[cfg_attr(not(test), rustc_diagnostic_item = "Path")]
+#[cfg_attr(all(not(test), feature = "lang_item"), rustc_diagnostic_item = "Path")]
 // FIXME:
 // `Path::new` current implementation relies
 // on `Path` being layout-compatible with `OsStr`.
