@@ -570,8 +570,6 @@ impl Error for char::ParseCharError {
 
 impl Error for alloc_crate::collections::TryReserveError {}
 
-impl Error for core::time::FromSecsError {}
-
 // Copied from `any.rs`.
 impl dyn Error + 'static {
     /// Returns `true` if the boxed type is the same as `T`

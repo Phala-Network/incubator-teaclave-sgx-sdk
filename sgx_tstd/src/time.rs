@@ -58,8 +58,6 @@ use crate::sys_common::FromInner;
 
 pub use core::time::Duration;
 
-pub use core::time::FromSecsError;
-
 /// A measurement of a monotonically nondecreasing clock.
 /// Opaque and useful only with [`Duration`].
 ///

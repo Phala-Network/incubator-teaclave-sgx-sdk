@@ -67,8 +67,6 @@
 
 #![allow(incomplete_features)]
 #![feature(allocator_api)]
-#![feature(asm)]
-#![feature(const_raw_ptr_deref)]
 #![allow(non_camel_case_types)]
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]

@@ -545,13 +545,13 @@ fn rust_panic_with_hook(
         } else {
             // Unfortunately, this does not print a backtrace, because creating
             // a `Backtrace` will allocate, which we must to avoid here.
-            let panicinfo = PanicInfo::internal_constructor(message, location);
+            let panicinfo = PanicInfo::internal_constructor(message, location, true);
             rtprintpanic!("{}\npanicked after panic::always_abort(), aborting.\n", panicinfo);
         }
         rsgx_abort()
     }
 
-    let mut info = PanicInfo::internal_constructor(message, location);
+    let mut info = PanicInfo::internal_constructor(message, location, true);
     info.set_payload(payload.get());
     panic_handler(&info);
 

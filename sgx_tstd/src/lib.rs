@@ -60,9 +60,7 @@
 #![feature(allow_internal_unsafe)]
 #![feature(allow_internal_unstable)]
 #![feature(array_error_internals)]
-#![feature(asm)]
 #![feature(assert_matches)]
-#![feature(async_stream)]
 #![feature(bench_black_box)]
 #![feature(bool_to_option)]
 #![feature(box_syntax)]
@@ -78,7 +76,6 @@
 #![feature(const_fn_fn_ptr_basics)]
 #![feature(const_fn_trait_bound)]
 #![feature(const_format_args)]
-#![feature(const_raw_ptr_deref)]
 #![feature(const_trait_impl)]
 #![feature(core_intrinsics)]
 #![feature(core_panic)]
@@ -93,17 +90,13 @@
 #![feature(format_args_nl)]
 #![feature(gen_future)]
 #![feature(get_mut_unchecked)]
-#![feature(global_asm)]
 #![feature(hashmap_internals)]
 #![feature(into_future)]
 #![feature(int_error_internals)]
-#![feature(iter_zip)]
 #![feature(lang_items)]
 #![feature(linked_list_remove)]
-#![feature(llvm_asm)]
 #![feature(log_syntax)]
 #![feature(map_try_insert)]
-#![feature(maybe_uninit_extra)]
 #![feature(maybe_uninit_slice)]
 #![feature(mixed_integer_ops)]
 #![feature(must_not_suspend)]
@@ -115,7 +108,6 @@
 #![feature(panic_info_message)]
 #![feature(panic_internals)]
 #![feature(panic_unwind)]
-#![feature(pin_static_ref)]
 #![feature(prelude_import)]
 #![feature(ptr_internals)]
 #![feature(rustc_attrs)]
@@ -130,7 +122,6 @@
 #![feature(try_blocks)]
 #![feature(try_reserve_kind)]
 #![feature(unboxed_closures)]
-#![feature(vec_spare_capacity)]
 #![default_lib_allocator]
 
 // Explicitly import the prelude. The compiler uses this same unstable attribute
@@ -213,7 +204,6 @@ pub use core::option;
 pub use core::pin;
 pub use core::ptr;
 pub use core::result;
-pub use core::stream;
 pub use core::u128;
 pub use core::u16;
 pub use core::u32;
@@ -295,7 +285,7 @@ pub use core::{
 #[allow(deprecated)]
 pub use core::{
     assert, assert_matches, cfg, column, compile_error, concat, concat_idents, const_format_args,
-    env, file, format_args, format_args_nl, include, include_bytes, include_str, line, llvm_asm,
+    env, file, format_args, format_args_nl, include, include_bytes, include_str, line,
     log_syntax, module_path, option_env, stringify, trace_macros,
 };
 
